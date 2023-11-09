@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\FrontendController;
+use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
@@ -28,4 +30,31 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__.'/auth.php';
+require __DIR__ . '/auth.php';
+
+
+//------------------------------ admin Routes ------------------------------//
+
+Route::get('/admin/login', function () {
+    return view('admin.login');
+});
+
+Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
+Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
+
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware('auth:admin');
+
+//------------------------------ admin Routes ------------------------------//
+
+
+//------------------------------for template -------------------------------//
+
+Route::get('/index', [FrontendController::class, 'index']);
+Route::get('/detail', [FrontendController::class, 'detail']);
+Route::get('/contact', [FrontendController::class, 'contact']);
+Route::get('/checkout', [FrontendController::class, 'checkout']);
+Route::get('/cart', [FrontendController::class, 'cart']);
+Route::get('/shop', [FrontendController::class, 'shop']);
+//------------------------------for template -------------------------------//
