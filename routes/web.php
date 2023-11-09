@@ -3,6 +3,8 @@
 use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\ProfileController;
+use App\Models\ContactUs;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,3 +60,8 @@ Route::get('/checkout', [FrontendController::class, 'checkout']);
 Route::get('/cart', [FrontendController::class, 'cart']);
 Route::get('/shop', [FrontendController::class, 'shop']);
 //------------------------------for template -------------------------------//
+
+Route::post('/save-contact', function (Request $request) {
+    ContactUs::create($request->all());
+    return redirect()->back()->with('success', 'You have Successfully Registred');
+});
