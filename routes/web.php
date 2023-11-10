@@ -39,9 +39,9 @@ require __DIR__ . '/auth.php';
 
 Route::get('/admin/login', function () {
     return view('admin.login');
-});
+})->middleware('guest:admin');
 
-Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login');
+Route::post('admin/login', [AdminAuthController::class, 'login'])->name('admin.login')->middleware('guest:admin');
 Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin.logout');
 
 Route::get('/admin/dashboard', function () {
@@ -61,7 +61,16 @@ Route::get('/cart', [FrontendController::class, 'cart']);
 Route::get('/shop', [FrontendController::class, 'shop']);
 //------------------------------for template -------------------------------//
 
+//-------------------to save the contact info-------------------------------//
+
 Route::post('/save-contact', function (Request $request) {
     ContactUs::create($request->all());
     return redirect()->back()->with('success', 'You have Successfully Registred');
 });
+//-------------------to save the contact info--------------------------------//
+
+//-------------------for Admin/dashboard------------------------------------//
+
+Route::get('admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware('auth:admin');
