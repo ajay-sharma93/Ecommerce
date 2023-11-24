@@ -1,10 +1,5 @@
 @extends('admin.app')
 @section('content')
-    <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper iframe-mode" data-widget="iframe" data-loading-screen="750">
-
-
-    </div>
 @endsection
 
 

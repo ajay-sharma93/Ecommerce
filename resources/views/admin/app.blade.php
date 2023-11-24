@@ -114,7 +114,7 @@
                         with font-awesome or any other icon font library -->
 
                         <li class="nav-item">
-                            <a href="pages/widgets.html" class="nav-link">
+                            <a href="/admin/dashboard" class="nav-link">
                                 <i class="nav-icon fas fa-th"></i>
                                 <p>
                                     Dashboard
@@ -122,6 +122,17 @@
                                 </p>
                             </a>
                         </li>
+
+                        <li class="nav-item">
+                            <a href="/admin/Addnewproduct" class="nav-link">
+                                <i class="nav-icon fas fa-briefcase"></i>
+                                <p>
+                                    Product
+                                </p>
+                            </a>
+
+                        </li>
+
                         <li class="nav-item">
                             <a href="pages/widgets.html" class="nav-link"
                                 onclick="event.preventDefault();
@@ -132,15 +143,6 @@
                                 </form>
                             </a>
                         </li>
-                        <form method="POST" action="{{ route('admin.logout') }}">
-                            @csrf
-
-                            <a href="{{ route('admin.logout') }}"
-                                onclick="event.preventDefault();
-                                                    this.closest('form').submit();">
-                                {{ __('Log Out') }}
-                            </a>
-                        </form>
 
                     </ul>
                     <!-- /.sidebar-menu -->
@@ -151,8 +153,7 @@
         @yield('content')
 
         <footer class="main-footer">
-            <strong>Copyright &copy; 2014-2021 <a href="https://adminlte.io">AdminLTE.io</a>.</strong>
-            All rights reserved.
+
             <div class="float-right d-none d-sm-inline-block">
                 <b>Version</b> 3.2.0
             </div>
