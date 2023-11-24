@@ -4,8 +4,10 @@ use App\Http\Controllers\FrontendController;
 use App\Http\Controllers\AdminAuthController;
 use App\Http\Controllers\ProfileController;
 use App\Models\ContactUs;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Storage;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +49,31 @@ Route::post('admin/logout', [AdminAuthController::class, 'logout'])->name('admin
 Route::get('/admin/dashboard', function () {
     return view('admin.dashboard');
 })->middleware('auth:admin');
+
+Route::get('/admin/Addnewproduct', function () {
+    return view('/admin.Addnewproduct');
+});
+
+Route::post('/admin/save-detail', function (Request $request) {
+    $image1 = Storage::disk('local')->put('public/services', $request->image1);
+    $image1Location = Storage::url($image1);
+    $image2 = Storage::disk('local')->put('public/services', $request->image2);
+    $image2Location = Storage::url($image2);
+    $image3 = Storage::disk('local')->put('public/services', $request->image3);
+    $image3Location = Storage::url($image3);
+    Product::create([
+        'name' => $request->name,
+        'price' => $request->price,
+        'ShortDes' => $request->ShortDes,
+        'sizes' => $request->sizes,
+        'colors' => $request->colors,
+        'image1' => 'http://localhost:8000/' . $image1Location,
+        'image2' => 'http://localhost:8000/' . $image2Location,
+        'image3' => 'http://localhost:8000/' . $image3Location,
+    ]);
+});
+
+
 
 //------------------------------ admin Routes ------------------------------//
 
