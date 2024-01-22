@@ -2,18 +2,25 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Categories;
+use App\Models\Category;
+use App\Models\Detail;
+use App\Models\Rightslider;
 use Illuminate\Http\Request;
 
 class FrontendController extends Controller
 {
     public function index()
     {
-        return view('index');
+        $rightsliders = Rightslider::all();
+        $categories = Categories::all();
+        return view('index', compact('rightsliders', 'categories'));
     }
 
     public function detail()
     {
-        return view('detail');
+        $details = Detail::all();
+        return view('detail', compact('details'));
     }
 
     public function contact()
