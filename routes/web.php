@@ -7,6 +7,7 @@ use App\Models\Categories;
 use App\Models\Category;
 use App\Models\ContactUs;
 use App\Models\Detail;
+use App\Models\Featureproduct;
 use App\Models\Product;
 use App\Models\rightslider;
 use Illuminate\Http\Request;
@@ -66,6 +67,11 @@ Route::get('/admin/rightslider', function () {
 Route::get('/admin/categories', function () {
     $categories = Categories::all();
     return view('admin.categories', compact('categories'));
+});
+
+Route::get('/admin/featureproduct', function () {
+    $featureproduct = Featureproduct::all();
+    return view('admin.featureproduct', compact('featureproduct'));
 });
 
 Route::post(

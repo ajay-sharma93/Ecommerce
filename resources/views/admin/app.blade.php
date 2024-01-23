@@ -155,6 +155,16 @@
                         </li>
 
                         <li class="nav-item">
+                            <a href="/admin/featureproduct" class="nav-link">
+                                <i class="nav-icon fas fa-briefcase"></i>
+                                <p>
+                                    Feature Product
+                                </p>
+                            </a>
+
+                        </li>
+
+                        <li class="nav-item">
                             <a href="pages/widgets.html" class="nav-link"
                                 onclick="event.preventDefault();
                             this.closest('form').submit();">
